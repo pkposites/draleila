@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Leila Freire | Rinoplastia e Harmonia da Face em São Paulo</title>
+<meta name="description" content="Conheça a Dra. Leila Freire, formada pela USP, doutora pela FAMERP e pós-doutora pela Santa Casa de SP. Consulta presencial em Pinheiros (SP) ou online.">
+<meta name="theme-color" content="#151a24">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dra. Leila Freire | Rinoplastia e Harmonia da Face">
+<meta property="og:description" content="Um nariz em harmonia com o seu rosto. Agende sua consulta de avaliação em São Paulo.">
+<meta property="og:image" content="assets/og-image.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<!-- ============================================================
+  TRACKING SETUP (preencher os IDs no objeto TRACKING abaixo)
+  - Meta Pixel
+  - Microsoft Clarity
+  - Lead Hub (injeta código de rastreio na URL do WhatsApp; ver
+    window.LeadHub.whatsappUrl() em script.js)
+  Enquanto um ID estiver vazio, aquele script simplesmente não carrega.
+  Eventos enviados à Meta (pixel + API de Conversões, mesmo event_id):
+    - "Lead" -> ao clicar no WhatsApp liberado (value 1, BRL)
+  Nada do quiz, de campanha/anúncio ou de dados sensíveis vai para a Meta.
+============================================================= -->
+<script>
+  window.TRACKING = {
+    metaPixelId: '',   // TODO: ID do pixel da Dra. Leila
+    clarityId: '',     // TODO: ID do projeto no Microsoft Clarity
+    leadHubKey: ''     // TODO: chave pk_... do Lead Hub
+  };
+</script>
+
+<!-- Microsoft Clarity — só carrega depois do consentimento (ver bloco LGPD) -->
+<script type="text/javascript">
+  function loadClarity() {
+    if (!window.TRACKING.clarityId) return;
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", window.TRACKING.clarityId);
+  }
+</script>
+
+<!-- Privacidade dos dados enviados à Meta (roda ANTES do pixel)
+  - Guarda a origem completa do anúncio (UTMs, nomes de campanha/anúncio)
+    no navegador para o WhatsApp, o Lead Hub e o script.js.
+  - Tira da barra de endereço os parâmetros que carregam NOMES (campanha,
+    conjunto, anúncio, termo), que podem conter dados sensíveis. Assim o
+    pixel e a API de Conversões nunca recebem esses textos. Ficam fbclid,
+    utm_source/medium e os IDs numéricos.
+  - Cria o ID persistente do visitante (external_id) e guarda o fbclid com a
+    hora do clique, para montar o fbc quando o cookie _fbc não existir.
+============================================================= -->
+<script>
+  (function () {
+    var NAMED = ['utm_campaign', 'utm_content', 'utm_term', 'campaign_name', 'adset_name', 'ad_name'];
+    var KEEP = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id',
+      'campaign_name', 'campaign_id', 'adset_name', 'adset_id', 'ad_name', 'ad_id',
+      'site_source_name', 'placement', 'fbclid', 'gclid'];
+    try {
+      var url = new URL(window.location.href);
+      window.lhLandingUrl = url.href; // Lead Hub lê a origem completa daqui
+      var found = {};
+      KEEP.forEach(function (k) { var v = url.searchParams.get(k); if (v) found[k] = v; });
+      if (Object.keys(found).length) {
+        try {
+          var saved = JSON.parse(sessionStorage.getItem('lead_origem_params') || '{}');
+          sessionStorage.setItem('lead_origem_params', JSON.stringify(Object.assign(saved, found)));
+        } catch (e) {}
+      }
+      if (found.fbclid) {
+        try { localStorage.setItem('lead_fbclid', JSON.stringify({ v: found.fbclid, ts: Date.now() })); } catch (e) {}
+      }
+      var changed = false;
+      NAMED.forEach(function (k) { if (url.searchParams.has(k)) { url.searchParams.delete(k); changed = true; } });
+      if (changed && window.history && history.replaceState) history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+    } catch (e) {}
+    try {
+      var ref = localStorage.getItem('lead_ref');
+      if (!ref) {
+        ref = 'ref-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem('lead_ref', ref);
+      }
+      window.leadRef = ref;
+    } catch (e) {}
+  })();
+</script>
+
+<!-- Meta Pixel — só carrega depois do consentimento (ver bloco LGPD)
+  - autoConfig desligado: o pixel não coleta sozinho textos de botões nem
+    metadados da página (título/descrição), que podem conter dados sensíveis.
+  - external_id (ID do visitante) vai no init; o pixel aplica o hash.
+============================================================= -->
+<script>
+  function loadMetaPixel() {
+    var pixelId = window.TRACKING.metaPixelId;
+    if (!pixelId) return;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('set', 'autoConfig', false, pixelId);
+    fbq('init', pixelId, window.leadRef ? { external_id: window.leadRef } : {});
+    fbq('track', 'PageView');
+  }
+</script>
+
+<!-- Lead Hub — só carrega depois do consentimento (ver bloco LGPD) -->
+<script>
+  function loadLeadHub() {
+    if (!window.TRACKING.leadHubKey) return;
+    var s = document.createElement('script');
+    s.src = 'https://leadinghub.netlify.app/tracker.js';
+    s.setAttribute('data-key', window.TRACKING.leadHubKey);
+    s.async = true;
+    document.head.appendChild(s);
+  }
+</script>
+
+<!-- ============================================================
+  CONSENTIMENTO DE COOKIES (LGPD)
+  Pixel, Clarity e Lead Hub só são carregados depois que a pessoa clica
+  em "Aceitar" no banner. Em "Recusar", nenhum deles carrega e a LP
+  segue funcionando normalmente (WhatsApp, quiz etc. não dependem disso).
+  A escolha fica salva em localStorage.lgpd_consent.
+============================================================= -->
+<script>
+  (function () {
+    var KEY = 'lgpd_consent';
+    var consent = '';
+    try { consent = localStorage.getItem(KEY) || ''; } catch (e) {}
+
+    function activateTracking() {
+      try { loadClarity(); } catch (e) {}
+      try { loadMetaPixel(); } catch (e) {}
+      try { loadLeadHub(); } catch (e) {}
+    }
+
+    if (consent === 'accepted') {
+      activateTracking();
+      return;
+    }
+    if (consent === 'rejected') return;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var banner = document.getElementById('lgpd-banner');
+      if (!banner) return;
+      banner.hidden = false;
+
+      document.getElementById('lgpd-accept').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'accepted'); } catch (e) {}
+        banner.hidden = true;
+        activateTracking();
+      });
+      document.getElementById('lgpd-reject').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'rejected'); } catch (e) {}
+        banner.hidden = true;
+      });
+    });
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== BANNER DE COOKIES (LGPD) ===================== -->
+<div class="lgpd-banner" id="lgpd-banner" hidden role="dialog" aria-label="Aviso de cookies">
+  <div class="lgpd-banner-text">
+    Usamos cookies para entender sua navegação e medir a origem dos contatos vindos de anúncios. <a href="privacidade.html" class="lgpd-banner-link">Saiba mais</a>.
+  </div>
+  <div class="lgpd-banner-actions">
+    <button type="button" id="lgpd-reject" class="btn btn-outline lgpd-btn">Recusar</button>
+    <button type="button" id="lgpd-accept" class="btn btn-primary lgpd-btn">Aceitar</button>
+  </div>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#topo" class="brand" aria-label="Dra. Leila Freire — início">
+      <span class="brand-name">Dra. Leila Freire</span>
+      <span class="brand-sub">Rinoplastia &middot; Harmonia da Face</span>
+    </a>
+    <a href="#qualificacao" class="btn btn-outline header-cta">Agendar Consulta</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="topo">
+  <div class="hero-texture"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">Rinoplastia &amp; Face &middot; Pinheiros, SP</p>
+      <h1>Um nariz em harmonia com o <em>seu</em> rosto. Natural, equilibrado e com a sua identidade.</h1>
+      <p class="hero-lead">
+        Planejamento individual com a Dra. Leila Freire, formada pela USP,
+        doutora pela FAMERP e pós-doutora pela Santa Casa de São Paulo.
+        Um olhar que une estética e função, do primeiro encontro ao
+        acompanhamento final.
+      </p>
+      <div class="hero-actions">
+        <a href="#qualificacao" id="cta-hero-scroll" class="btn btn-primary">Quero agendar minha consulta</a>
+        <a href="#metodo" class="btn btn-ghost">Como funciona</a>
+      </div>
+      <ul class="hero-trust">
+        <li>MD &middot; PhD &middot; Pós-doutorado</li>
+        <li>Formação USP</li>
+        <li>Presencial e online</li>
+        <li>CRM-SP 105717 &middot; RQE 35239</li>
+      </ul>
+    </div>
+    <div class="hero-media">
+      <div class="hero-frame">
+        <!-- Foto da Dra.: salvar em assets/dra-leila.webp (retrato vertical 4:5).
+             Enquanto não existir, aparece o monograma no lugar. -->
+        <div class="photo-slot">
+          <img src="assets/dra-leila.webp" alt="Dra. Leila Freire" width="480" height="600" fetchpriority="high"
+               onerror="this.parentNode.classList.add('is-empty');this.remove();">
+          <span class="photo-fallback" aria-hidden="true">LF</span>
+        </div>
+        <div class="hero-badge">
+          <span class="hero-badge-title">Profa. Dra. Leila Freire</span>
+          <span class="hero-badge-sub">Otorrinolaringologia &middot; Cirurgia Plástica da Face</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAIXA DE CREDENCIAIS ===================== -->
+<section class="creds" aria-label="Formação">
+  <div class="container creds-grid">
+    <div class="cred">
+      <span class="cred-title">Residência</span>
+      <span class="cred-text">Otorrinolaringologia &middot; USP</span>
+    </div>
+    <div class="cred">
+      <span class="cred-title">Fellowship</span>
+      <span class="cred-text">Cirurgia Plástica da Face &middot; USP</span>
+    </div>
+    <div class="cred">
+      <span class="cred-title">Doutorado</span>
+      <span class="cred-text">Ciências da Saúde &middot; FAMERP</span>
+    </div>
+    <div class="cred">
+      <span class="cred-title">Pós-doutorado</span>
+      <span class="cred-text">Santa Casa de São Paulo</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOBRE ===================== -->
+<section class="about" id="sobre">
+  <div class="container about-grid">
+    <div class="about-media">
+      <div class="photo-slot photo-slot--about">
+        <!-- Segunda foto (consultório/atendimento): assets/dra-leila-sobre.webp -->
+        <img src="assets/dra-leila-sobre.webp" alt="Dra. Leila Freire em seu consultório" loading="lazy" width="480" height="600"
+             onerror="this.parentNode.classList.add('is-empty');this.remove();">
+        <span class="photo-fallback" aria-hidden="true">LF</span>
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="section-heading">
+        <p class="eyebrow">Sobre a Dra. Leila</p>
+        <h2>Ciência, técnica e sensibilidade estética a serviço do seu rosto</h2>
+      </div>
+      <p>
+        A Dra. Leila Freire fez residência em Otorrinolaringologia na
+        Universidade de São Paulo (USP), tem título de especialista pela
+        ABORL-CCF e aprofundou a formação com o Fellowship em Cirurgia
+        Plástica da Face, também na USP.
+      </p>
+      <p>
+        No doutorado em Ciências da Saúde pela FAMERP, desenvolveu uma
+        técnica própria para a base do nariz, e no pós-doutorado pela
+        Santa Casa de São Paulo seguiu se dedicando ao ensino e à pesquisa.
+        Hoje, além de atender, forma outros especialistas na área.
+      </p>
+      <ul class="about-highlights">
+        <li>Resultado natural, que respeita a sua identidade</li>
+        <li>Olhar que une estética e função do nariz</li>
+        <li>Técnica própria desenvolvida no doutorado</li>
+        <li>Professora e mentora de outros especialistas</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DIFERENCIAIS ===================== -->
+<section class="pillars" id="diferenciais">
+  <div class="container">
+    <div class="section-heading center light">
+      <p class="eyebrow">Por que a Dra. Leila</p>
+      <h2>Beleza que parece sua, não de outra pessoa</h2>
+    </div>
+    <div class="pillars-grid">
+      <article class="pillar">
+        <span class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18" opacity=".35"/><path d="M8.5 15.5c1 .9 2.2 1.3 3.5 1.3s2.5-.4 3.5-1.3"/></svg>
+        </span>
+        <h3>Proporção e equilíbrio</h3>
+        <p>O planejamento parte das proporções do seu rosto inteiro, não de um "nariz modelo". O objetivo é harmonia, não padronização.</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12c3-5 13-5 16 0-3 5-13 5-16 0z"/><circle cx="12" cy="12" r="2.6"/></svg>
+        </span>
+        <h3>Estética e função juntas</h3>
+        <p>Formação em Otorrinolaringologia e em Cirurgia Plástica da Face: um olhar completo, que considera a forma e o funcionamento.</p>
+      </article>
+      <article class="pillar">
+        <span class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19V8l8-4 8 4v11"/><path d="M9 19v-6h6v6"/><path d="M4 19h16"/></svg>
+        </span>
+        <h3>Base acadêmica sólida</h3>
+        <p>USP, FAMERP e Santa Casa de São Paulo. Uma trajetória construída com estudo, pesquisa e atualização constante.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== A CONSULTA ===================== -->
+<section class="consult" id="consulta">
+  <div class="container consult-grid">
+    <div class="consult-copy">
+      <div class="section-heading">
+        <p class="eyebrow">A consulta</p>
+        <h2>Uma hora inteira dedicada ao seu rosto e às suas dúvidas</h2>
+      </div>
+      <p>
+        Cada rosto é único, e um bom planejamento não cabe em uma conversa
+        rápida ou em um orçamento por mensagem. Por isso, tudo começa com
+        uma consulta particular com a própria Dra. Leila, com tempo para
+        ouvir você, analisar cada detalhe e explicar com transparência.
+      </p>
+      <div class="consult-modes">
+        <span class="consult-mode">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          Presencial em Pinheiros, SP
+        </span>
+        <span class="consult-mode">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="M16 10l5-3v10l-5-3"/></svg>
+          Online, de onde você estiver
+        </span>
+      </div>
+    </div>
+    <ul class="consult-list">
+      <li>
+        <span class="consult-num">1h</span>
+        <div><strong>Tempo de verdade</strong><p>Consulta com duração de 1 hora, sem pressa, com a Dra. Leila.</p></div>
+      </li>
+      <li>
+        <span class="consult-num">01</span>
+        <div><strong>Análise detalhada da face</strong><p>Avaliação completa e personalizada das proporções do seu rosto.</p></div>
+      </li>
+      <li>
+        <span class="consult-num">02</span>
+        <div><strong>Indicação das melhores opções</strong><p>Os caminhos que fazem sentido para o seu caso, com prós, cuidados e prazos.</p></div>
+      </li>
+      <li>
+        <span class="consult-num">03</span>
+        <div><strong>Todas as suas dúvidas esclarecidas</strong><p>Você sai sabendo exatamente quais são os próximos passos.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== MÉTODO ===================== -->
+<section class="method" id="metodo">
+  <div class="container">
+    <div class="section-heading center">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Uma jornada clara e acolhedora, do primeiro contato ao resultado</h2>
+    </div>
+    <ol class="method-grid">
+      <li class="method-card">
+        <span class="method-number">01</span>
+        <h3>Primeiro contato</h3>
+        <p>Você conversa com a equipe pelo WhatsApp, recebe o valor da consulta e escolhe o melhor horário.</p>
+      </li>
+      <li class="method-card">
+        <span class="method-number">02</span>
+        <h3>Consulta de avaliação</h3>
+        <p>1 hora com a Dra. Leila, presencial ou online, para entender seus objetivos e avaliar a sua face em detalhes.</p>
+      </li>
+      <li class="method-card">
+        <span class="method-number">03</span>
+        <h3>Planejamento personalizado</h3>
+        <p>Um plano feito para o seu rosto. Só a partir dele são informados os valores de honorários e de hospital.</p>
+      </li>
+      <li class="method-card">
+        <span class="method-number">04</span>
+        <h3>Acompanhamento próximo</h3>
+        <p>Suporte da Dra. e da equipe em cada fase, para você viver o processo com tranquilidade e segurança.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== RESULTADOS / CONTEÚDO ===================== -->
+<section class="cases" id="resultados">
+  <div class="container">
+    <div class="section-heading center">
+      <p class="eyebrow">Conteúdo da Dra.</p>
+      <h2>Conheça de perto o trabalho da Dra. Leila</h2>
+      <p class="section-sub">No Instagram e no YouTube ela explica, com clareza, como funciona cada etapa e responde às dúvidas mais comuns.</p>
+    </div>
+
+    <!-- Antes e depois: quando houver imagens autorizadas pelas pacientes,
+         colocar em assets/cases/ e reativar um carrossel aqui (ver README). -->
+
+    <div class="social-cards">
+      <a href="https://www.instagram.com/draleilafreire/" target="_blank" rel="noopener" class="social-card" data-social="instagram">
+        <span class="social-card-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
+        </span>
+        <span class="social-card-text">
+          <strong>Veja resultados e bastidores no Instagram</strong>
+          <span>@draleilafreire</span>
+        </span>
+        <span class="social-card-arrow" aria-hidden="true">&#8594;</span>
+      </a>
+      <a href="https://www.youtube.com/channel/UCMl2IJT1Obs68eYMaKN0APA" target="_blank" rel="noopener" class="social-card" data-social="youtube">
+        <span class="social-card-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.2v5.6l4.8-2.8L10 9.2z" fill="currentColor"/></svg>
+        </span>
+        <span class="social-card-text">
+          <strong>Assista às explicações no YouTube</strong>
+          <span>Profa. Dra. Leila Freire</span>
+        </span>
+        <span class="social-card-arrow" aria-hidden="true">&#8594;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROVA SOCIAL (Google) — aguardando dados reais =====================
+     Pelo padrão de LPs, só publicar com nota, nº de avaliações e link REAIS
+     do perfil no Google. Preencher e remover este comentário.
+<section class="proof" id="depoimentos">
+  <div class="container">
+    <div class="section-heading center light">
+      <p class="eyebrow">Quem já passou por aqui</p>
+      <h2>O que dizem as pacientes da Dra. Leila</h2>
+    </div>
+    <a href="LINK_DO_PERFIL_GOOGLE" target="_blank" rel="noopener" class="google-rating">
+      <span class="google-rating-score">5,0</span>
+      <span class="google-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="google-rating-text">NN avaliações no Google</span>
+    </a>
+    <div class="proof-grid">
+      <blockquote class="proof-card">
+        <p>"Texto real da avaliação."</p>
+        <cite>Nome &middot; Google</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+============================================================= -->
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq" id="duvidas">
+  <div class="container faq-inner">
+    <div class="section-heading center">
+      <p class="eyebrow">Dúvidas frequentes</p>
+      <h2>Antes de agendar, você pode estar se perguntando</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Quanto custa uma rinoplastia com a Dra. Leila?</summary>
+        <p>Os valores referentes aos honorários médicos e aos custos hospitalares são informados após a consulta com a Dra. Leila.</p>
+        <p>Durante a avaliação, a Dra. Leila realiza um exame detalhado e define o planejamento cirúrgico mais adequado para o seu caso. Como cada procedimento é individualizado, os valores podem variar de acordo com a complexidade da cirurgia e a estrutura hospitalar necessária.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Por que não é possível passar um valor médio pelo WhatsApp?</summary>
+        <p>Porque não existe um "nariz padrão". O que define o plano (e, portanto, o investimento) é a análise da sua face, que só é feita na consulta. Um valor dado sem essa avaliação seria um chute, e a Dra. Leila prefere ser transparente com você.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Como funciona a consulta? Quanto custa?</summary>
+        <p>A consulta é particular e dura 1 hora. Nela é feita uma avaliação completa e personalizada, com análise detalhada da face, indicação das melhores opções de tratamento ou cirurgia e esclarecimento de todas as suas dúvidas. O valor da consulta é informado pela equipe no WhatsApp.</p>
+      </details>
+      <details class="faq-item">
+        <summary>A consulta pode ser online?</summary>
+        <p>Sim. A Dra. Leila atende presencialmente no consultório em Pinheiros (São Paulo) e também online, para quem mora longe ou prefere começar à distância.</p>
+      </details>
+      <details class="faq-item">
+        <summary>A Dra. atende convênio?</summary>
+        <p>A consulta é particular. Para qualquer dúvida sobre plano de saúde e reembolso, fale com a equipe pelo WhatsApp.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Em quais hospitais a Dra. Leila opera?</summary>
+        <p>A Dra. Leila atua em hospitais de referência em São Paulo:</p>
+        <ul class="faq-hospitals">
+          <li>Hospital Israelita Albert Einstein</li>
+          <li>Hospital Alemão Oswaldo Cruz</li>
+          <li>Hospital Vila Nova Star</li>
+          <li>Hospital Santa Catarina</li>
+          <li>Hospital Paulista</li>
+          <li>Hospital São Luiz Morumbi</li>
+          <li>Hospital São Luiz Itaim</li>
+          <li>Hospital São Luiz Osasco</li>
+        </ul>
+      </details>
+      <details class="faq-item">
+        <summary>Existe idade certa para procurar a Dra. Leila?</summary>
+        <p>A Dra. Leila atende pessoas de todas as faixas de idade. Na consulta, ela avalia o seu caso e orienta qual é o melhor momento e o melhor caminho para você.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Vou ficar com um resultado artificial?</summary>
+        <p>A proposta da Dra. Leila é justamente o contrário: um resultado em equilíbrio com as suas proporções e que preserve a sua identidade. Cada plano é individual e as expectativas são alinhadas com transparência já na consulta.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUIZ INTERATIVO ===================== -->
+<section class="quiz" id="quiz">
+  <div class="container quiz-inner">
+    <div class="section-heading center">
+      <p class="eyebrow">Pré-atendimento</p>
+      <h2>Conte um pouco sobre você</h2>
+      <p class="section-sub">
+        Leva menos de 1 minuto. Assim a equipe já recebe seu contato
+        entendendo o que você procura e pode te atender melhor.
+      </p>
+    </div>
+
+    <div class="quiz-box">
+      <div class="quiz-progress" aria-hidden="true">
+        <span class="quiz-dot active" data-dot="1"></span>
+        <span class="quiz-dot" data-dot="2"></span>
+        <span class="quiz-dot" data-dot="3"></span>
+        <span class="quiz-dot" data-dot="4"></span>
+        <span class="quiz-dot" data-dot="5"></span>
+      </div>
+
+      <!-- Cada opção tem data-score (0 a 3). A soma define a prioridade do
+           contato (quente / em consideração / inicial) — ver script.js.
+           Nenhuma resposta bloqueia o WhatsApp. -->
+      <div class="quiz-step" data-step="1">
+        <p class="quiz-question">O que você gostaria de melhorar?</p>
+        <div class="quiz-options">
+          <button type="button" class="quiz-option" data-field="objetivo" data-score="0" data-value="Harmonia do nariz com o rosto">Harmonia do nariz com o rosto</button>
+          <button type="button" class="quiz-option" data-field="objetivo" data-score="0" data-value="Ponta ou perfil do nariz">A ponta ou o perfil do nariz</button>
+          <button type="button" class="quiz-option" data-field="objetivo" data-score="0" data-value="Outra região da face">Outra região da face</button>
+          <button type="button" class="quiz-option" data-field="objetivo" data-score="0" data-value="Ainda não sei dizer">Ainda não sei dizer ao certo</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="2" hidden>
+        <p class="quiz-question">Qual é a sua situação hoje?</p>
+        <div class="quiz-options">
+          <button type="button" class="quiz-option" data-field="situacao" data-score="2" data-value="Já sei o que quero e quero passar em consulta">Já sei o que quero e quero passar em consulta</button>
+          <button type="button" class="quiz-option" data-field="situacao" data-score="1" data-value="Estou comparando profissionais">Estou comparando profissionais</button>
+          <button type="button" class="quiz-option" data-field="situacao" data-score="0" data-value="Ainda estou entendendo as possibilidades">Ainda estou entendendo as possibilidades</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="3" hidden>
+        <p class="quiz-question">Para quando você pretende dar esse passo?</p>
+        <div class="quiz-options">
+          <button type="button" class="quiz-option" data-field="prazo" data-score="2" data-value="O quanto antes">O quanto antes</button>
+          <button type="button" class="quiz-option" data-field="prazo" data-score="2" data-value="Nos próximos 30 dias">Nos próximos 30 dias</button>
+          <button type="button" class="quiz-option" data-field="prazo" data-score="1" data-value="Nos próximos 3 meses">Nos próximos 3 meses</button>
+          <button type="button" class="quiz-option" data-field="prazo" data-score="0" data-value="Ainda sem prazo definido">Ainda não tenho prazo definido</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="4" hidden>
+        <p class="quiz-question">Como você prefere fazer a consulta?</p>
+        <div class="quiz-options">
+          <button type="button" class="quiz-option" data-field="formato" data-score="1" data-value="Presencial em Pinheiros (SP)">Presencial, em Pinheiros (SP)</button>
+          <button type="button" class="quiz-option" data-field="formato" data-score="1" data-value="Online">Online</button>
+          <button type="button" class="quiz-option" data-field="formato" data-score="0" data-value="Ainda não sei">Ainda não sei</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="5" hidden>
+        <p class="quiz-question">A consulta com a Dra. Leila é particular, com 1 hora de avaliação completa. Como isso se encaixa para você?</p>
+        <div class="quiz-options">
+          <button type="button" class="quiz-option" data-field="investimento" data-score="3" data-value="Faz sentido, quero agendar a consulta">Faz sentido para mim, quero agendar</button>
+          <button type="button" class="quiz-option" data-field="investimento" data-score="1" data-value="Quer saber o valor da consulta antes de decidir">Quero saber o valor da consulta antes de decidir</button>
+          <button type="button" class="quiz-option" data-field="investimento" data-score="0" data-value="Por enquanto quer só uma ideia de valores da cirurgia">Por enquanto, quero só ter uma ideia de valores</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quiz-result" hidden>
+        <p class="quiz-result-tag" id="quiz-result-tag"></p>
+        <p class="quiz-result-title" id="quiz-result-title"></p>
+        <p class="quiz-result-text" id="quiz-result-text"></p>
+        <p class="quiz-result-summary" id="quiz-result-summary"></p>
+        <button type="button" class="btn btn-primary btn-block" id="quiz-continue">Continuar para o agendamento</button>
+        <button type="button" class="quiz-restart" id="quiz-restart">Refazer respostas</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUALIFICAÇÃO ===================== -->
+<section class="qualify" id="qualificacao">
+  <div class="container qualify-inner">
+    <div class="section-heading center">
+      <p class="eyebrow">Última etapa</p>
+      <h2>Vamos dar o próximo passo?</h2>
+      <p class="section-sub">
+        Você conheceu a Dra. Leila Freire e a forma como ela trabalha:
+        consulta particular de 1 hora, planejamento feito para o seu rosto
+        e acompanhamento próximo em todas as etapas.
+      </p>
+    </div>
+
+    <div class="confirm-box" id="confirm-box">
+      <label class="confirm-check" id="confirm-check">
+        <input type="checkbox" id="confirm-interesse">
+        <span class="checkmark" aria-hidden="true"></span>
+        <span class="confirm-text">
+          Entendi que a consulta com a Dra. Leila é particular, dura 1 hora
+          (presencial ou online) e que o valor dela é informado pela equipe
+          no WhatsApp. Tenho interesse em agendar minha avaliação.
+        </span>
+      </label>
+
+      <div class="optional-fields" id="optional-fields" hidden>
+        <p class="optional-fields-hint">Se quiser, adiante para a equipe (opcional):</p>
+        <input type="text" id="lead-nome" placeholder="Seu nome" autocomplete="name" aria-label="Seu nome">
+        <input type="tel" id="lead-telefone" placeholder="Seu WhatsApp (com DDD)" autocomplete="tel" inputmode="tel" aria-label="Seu WhatsApp com DDD">
+      </div>
+
+      <button type="button" id="whatsapp-qualificado" class="btn btn-primary btn-block btn-locked" aria-disabled="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4z"/></svg>
+        Falar com a equipe no WhatsApp
+      </button>
+      <p class="confirm-hint" id="confirm-hint">Marque a caixa acima para liberar o contato direto com a equipe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCALIZAÇÃO ===================== -->
+<section class="location" id="localizacao">
+  <div class="container location-grid">
+    <div class="location-info">
+      <div class="section-heading">
+        <p class="eyebrow">Onde estamos</p>
+        <h2>Consultório em Pinheiros, São Paulo</h2>
+      </div>
+      <ul class="location-list">
+        <li>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <span>Rua Capote Valente, 432 &middot; 5º andar, sala 55<br>Pinheiros, São Paulo &ndash; SP &middot; CEP 05409-001</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Segunda a sexta-feira, das 8h às 18h</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="M16 10l5-3v10l-5-3"/></svg>
+          <span>Também atende online, para quem está em outras cidades</span>
+        </li>
+      </ul>
+      <a href="https://maps.google.com/?q=-23.557699,-46.675201" target="_blank" rel="noopener" class="btn btn-outline-dark" id="map-link">Abrir no Google Maps</a>
+    </div>
+    <div class="location-map">
+      <iframe title="Mapa do consultório da Dra. Leila Freire em Pinheiros"
+        src="https://maps.google.com/maps?q=-23.557699,-46.675201&z=16&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="final-cta">
+  <div class="hero-texture"></div>
+  <div class="container final-cta-inner">
+    <p class="eyebrow eyebrow-center">Dra. Leila Freire</p>
+    <h2>O primeiro passo é uma boa conversa</h2>
+    <p>Fale com a equipe da Dra. Leila Freire e agende sua consulta: presencial em Pinheiros ou online.</p>
+    <a href="#qualificacao" id="cta-final-scroll" class="btn btn-primary btn-lg">Quero agendar minha consulta</a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-id">
+      <span class="footer-brand">Dra. Leila Freire</span>
+      <span>Responsável técnica: Dra. Leila Freire &middot; CRM-SP 105717 &middot; RQE 35239</span>
+      <span>Rua Capote Valente, 432 &middot; sala 55, 5º andar &middot; Pinheiros, São Paulo &ndash; SP &middot; CEP 05409-001</span>
+      <span>Seg. a sex., 8h às 18h &middot; (11) 3064-2676</span>
+    </div>
+    <div class="footer-links">
+      <a href="privacidade.html">Política de Privacidade</a>
+      <a href="https://www.instagram.com/draleilafreire/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/channel/UCMl2IJT1Obs68eYMaKN0APA" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+  <div class="container footer-legal">
+    <p>Conteúdo informativo. Os resultados variam de pessoa para pessoa e dependem de avaliação médica individual.</p>
+    <p>&copy; <span id="year"></span> Dra. Leila Freire. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- Barra fixa (somente mobile, via CSS) -->
+<div class="mobile-sticky-cta">
+  <a href="#qualificacao" id="cta-sticky-scroll" class="btn btn-primary">Agendar minha consulta</a>
+</div>
+
+<!-- Aviso de "bem-vindo de volta": aparece se a pessoa saiu pra ver o
+     Instagram/YouTube e retornou a esta aba, puxando de volta pro funil -->
+<div class="welcome-back-toast" id="welcome-back-toast" hidden role="status">
+  <p>Gostou do que viu? Vamos continuar seu agendamento.</p>
+  <button type="button" id="welcome-back-cta" class="btn btn-primary welcome-back-btn">Continuar</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

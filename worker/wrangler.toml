@@ -1,0 +1,21 @@
+name = "draleilacapi"
+main = "index.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+# TODO: preencher com o ID do pixel da Dra. Leila (Events Manager)
+PIXEL_ID = ""
+ALLOWED_ORIGIN = "https://draleila.netlify.app"
+
+# Segredos (não vão no git — configurar via `wrangler secret put` ou no dashboard):
+#   META_ACCESS_TOKEN     -> token de sistema do Business Manager (ads_management)
+#   OFFLINE_EVENTS_TOKEN  -> token qualquer que você define, usado pra autenticar
+#                            a equipe reportando eventos offline (consulta/agendamento)
+# Opcional:
+#   TEST_EVENT_CODE       -> código do "Testar eventos" no Events Manager
+
+# TODO: criar o namespace KV (ex: `wrangler kv namespace create draleila-leads`)
+# e colar o id abaixo.
+[[kv_namespaces]]
+binding = "LEADS"
+id = "PREENCHER_ID_DO_KV"
