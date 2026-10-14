@@ -3,19 +3,21 @@ main = "index.js"
 compatibility_date = "2026-01-01"
 
 [vars]
-# TODO: preencher com o ID do pixel da Dra. Leila (Events Manager)
-PIXEL_ID = ""
+PIXEL_ID = "786053772867277"
+# Domínios da LP que podem chamar o worker, separados por vírgula.
+# Trocar/adicionar quando o domínio final da LP estiver definido.
 ALLOWED_ORIGIN = "https://draleila.netlify.app"
 
-# Segredos (não vão no git — configurar via `wrangler secret put` ou no dashboard):
-#   META_ACCESS_TOKEN     -> token de sistema do Business Manager (ads_management)
-#   OFFLINE_EVENTS_TOKEN  -> token qualquer que você define, usado pra autenticar
-#                            a equipe reportando eventos offline (consulta/agendamento)
+# Segredos (não vão no git — configurar no dashboard ou via `wrangler secret put`):
+#   META_ACCESS_TOKEN     -> token de acesso da API de Conversões do pixel
+#   OFFLINE_EVENTS_TOKEN  -> senha à sua escolha, para reportar eventos offline
+#                            (consulta realizada / agendamento confirmado)
 # Opcional:
-#   TEST_EVENT_CODE       -> código do "Testar eventos" no Events Manager
+#   TEST_EVENT_CODE       -> código do "Testar eventos" no Gerenciador de Eventos
 
-# TODO: criar o namespace KV (ex: `wrangler kv namespace create draleila-leads`)
-# e colar o id abaixo.
-[[kv_namespaces]]
-binding = "LEADS"
-id = "PREENCHER_ID_DO_KV"
+# KV (opcional, só para os eventos offline casarem com o clique original).
+# 1. Criar o namespace: Workers e Pages > KV > Create namespace "draleila-leads"
+# 2. Colar o ID abaixo e descomentar as 3 linhas.
+# [[kv_namespaces]]
+# binding = "LEADS"
+# id = "COLE_AQUI_O_ID_DO_KV"

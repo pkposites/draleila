@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Lead Hub (cadeolead). Sem pixel nesta página, então fica no início do
+     <head>. data-consent="required": segue a escolha feita no banner da
+     página principal (localStorage.lgpd_consent), sem mostrar outro banner. -->
+<script id="leadhub-tracker" src="https://leadinghub.netlify.app/tracker.js" data-key="pk_a369b410cbb94f9b95f7627c262a3e66" data-consent="required" async></script>
+<script>
+  (function () {
+    var c = '';
+    try { c = localStorage.getItem('lgpd_consent') || ''; } catch (e) {}
+    if (c !== 'accepted' && c !== 'rejected') return;
+    document.getElementById('leadhub-tracker').addEventListener('load', function () {
+      window.LeadHub?.consent(c === 'accepted');
+    });
+  })();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Política de Privacidade | Dra. Leila Freire</title>
@@ -49,18 +63,25 @@
 
     <h2>2. Quais dados coletamos</h2>
     <ul>
-      <li><strong>Dados que você informa:</strong> nome e telefone (opcionais) e as respostas do pré-atendimento, que só são enviados quando você mesma(o) envia a mensagem pelo WhatsApp.</li>
+      <li><strong>Dados que você informa:</strong> nome e WhatsApp, pedidos antes de abrir a conversa, e as respostas do pré-atendimento. A resposta sobre o que você quer mudar no rosto só é registrada se você autorizar.</li>
       <li><strong>Dados de navegação</strong> (somente se você aceitar os cookies): páginas visitadas, cliques, origem do acesso (por exemplo, o anúncio que trouxe você até aqui) e identificadores técnicos do navegador.</li>
     </ul>
 
     <h2>3. Cookies e ferramentas de medição</h2>
     <p>
       Com o seu consentimento, usamos o Meta Pixel e a API de Conversões
-      da Meta (para medir o resultado de anúncios), o Microsoft Clarity
-      (para entender como a página é usada) e uma ferramenta de registro
-      de origem dos contatos. Se você clicar em &ldquo;Recusar&rdquo;,
-      nenhuma dessas ferramentas é carregada e a página continua
-      funcionando normalmente.
+      da Meta (para medir o resultado de anúncios) e o Microsoft Clarity
+      (para entender como a página é usada). Se você clicar em
+      &ldquo;Recusar&rdquo;, nada disso guarda informações no seu aparelho
+      e a página continua funcionando normalmente.
+    </p>
+    <p>
+      Quando você clica para falar no WhatsApp, o nome e o telefone
+      informados e a origem do acesso são registrados pelo Lead Hub, a
+      ferramenta que organiza os contatos recebidos. Sem o aceite de
+      cookies, esse registro é feito sem cookies e sem guardar nada no seu
+      aparelho. Veja a
+      <a href="https://leadinghub.netlify.app/privacidade/pk_a369b410cbb94f9b95f7627c262a3e66" target="_blank" rel="noopener">política de privacidade do Lead Hub</a>.
     </p>
     <p>
       As respostas do pré-atendimento <strong>não</strong> são enviadas à
@@ -87,7 +108,7 @@
       Você pode, a qualquer momento, pedir acesso, correção ou exclusão
       dos seus dados, ou revogar o consentimento de cookies (limpando os
       dados do site no seu navegador). Para isso, fale com a equipe pelo
-      WhatsApp <a href="https://wa.me/551130642676" target="_blank" rel="noopener">(11) 3064-2676</a>
+      WhatsApp (11) 3064-2676 (<a href="index.html#qualificacao">falar pela página</a>)
       ou pelo Instagram
       <a href="https://www.instagram.com/draleilafreire/" target="_blank" rel="noopener">@draleilafreire</a>.
     </p>
@@ -97,7 +118,10 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <p>&copy; <span id="year"></span> Dra. Leila Freire &middot; CRM-SP 105717 &middot; RQE 35239</p>
-    <ul class="footer-links"><li><a href="index.html">Voltar à página inicial</a></li></ul>
+    <ul class="footer-links">
+      <li><a href="https://leadinghub.netlify.app/privacidade/pk_a369b410cbb94f9b95f7627c262a3e66" target="_blank" rel="noopener">Política de privacidade</a></li>
+      <li><a href="index.html">Voltar à página inicial</a></li>
+    </ul>
   </div>
 </footer>
 

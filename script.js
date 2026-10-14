@@ -92,7 +92,10 @@ captureOrigemParams();
    Preencher CAPI_ENDPOINT com a URL do worker depois do deploy
    (ex: https://draleilacapi.<subdomínio>.workers.dev). Vazio = desligado.
 ============================================================= */
-var CAPI_ENDPOINT = ''; // TODO: URL do worker (pasta worker/)
+// Worker "draleilacapi" na conta Cloudflare (mesmo subdomínio do worker da
+// Dra. Letícia). Enquanto ele não estiver publicado, o envio falha em
+// silêncio e a página segue normal.
+var CAPI_ENDPOINT = 'https://draleilacapi.robson-oc96.workers.dev';
 var LEAD_REF_KEY = 'lead_ref';
 // Valor fixo do lead (a Meta exige número + moeda; sem valor real, usa 1 BRL).
 var LEAD_VALUE = 1;
@@ -406,12 +409,17 @@ var optionalFields = document.getElementById('optional-fields');
 var leadNomeInput = document.getElementById('lead-nome');
 var leadTelefoneInput = document.getElementById('lead-telefone');
 
+var healthConsentWrap = document.getElementById('health-consent-wrap');
+var healthConsent = document.getElementById('health-consent');
+
 confirmCheckbox.addEventListener('change', function () {
   if (confirmCheckbox.checked) {
     whatsappQualificado.classList.add('unlocked');
     whatsappQualificado.setAttribute('aria-disabled', 'false');
     confirmHint.classList.add('hidden');
     optionalFields.hidden = false;
+    // A autorização de saúde só aparece se a pergunta de saúde foi respondida.
+    if (healthConsentWrap) healthConsentWrap.hidden = !quizAnswers.objetivo;
   } else {
     whatsappQualificado.classList.remove('unlocked');
     whatsappQualificado.setAttribute('aria-disabled', 'true');
@@ -440,10 +448,73 @@ function callAttentionToCheckbox(origem) {
   trackEvent('cta_click', { origem: origem || 'whatsapp_bloqueado_sem_confirmar' });
 }
 
+/* ============================================================
+   PASSO DE CONTATO (nome + WhatsApp obrigatórios)
+============================================================= */
+function maskPhone(value) {
+  var d = value.replace(/\D/g, '').slice(0, 11);
+  if (d.length <= 2) return d ? '(' + d : '';
+  if (d.length <= 6) return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+  if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+  return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+}
+
+if (leadTelefoneInput) {
+  leadTelefoneInput.addEventListener('input', function () {
+    leadTelefoneInput.value = maskPhone(leadTelefoneInput.value);
+    if (leadTelefoneInput.getAttribute('aria-invalid') === 'true') validateContact(false);
+  });
+}
+if (leadNomeInput) {
+  leadNomeInput.addEventListener('input', function () {
+    if (leadNomeInput.getAttribute('aria-invalid') === 'true') validateContact(false);
+  });
+}
+
+function setFieldError(input, errorId, invalid) {
+  input.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+  var err = document.getElementById(errorId);
+  if (err) err.hidden = !invalid;
+}
+
+// Nome com pelo menos 2 letras; WhatsApp com DDD (10 ou 11 dígitos).
+function validateContact(focusFirst) {
+  var nomeOk = leadNomeInput.value.trim().length >= 2;
+  var digits = leadTelefoneInput.value.replace(/\D/g, '');
+  var telOk = digits.length === 10 || digits.length === 11;
+  setFieldError(leadNomeInput, 'lead-nome-erro', !nomeOk);
+  setFieldError(leadTelefoneInput, 'lead-telefone-erro', !telOk);
+  if (focusFirst) {
+    if (!nomeOk) leadNomeInput.focus();
+    else if (!telOk) leadTelefoneInput.focus();
+  }
+  return nomeOk && telOk;
+}
+
+/* Respostas do quiz para o Lead Hub (viram colunas na planilha).
+   "O que quer mudar" é dado de saúde: só vai com a autorização marcada. */
+function sendQuizToLeadHub() {
+  if (!window.LeadHub || typeof window.LeadHub.set !== 'function') return;
+  var dados = {};
+  if (quizAnswers.situacao) dados['Momento'] = quizAnswers.situacao;
+  if (quizAnswers.prazo) dados['Prazo'] = quizAnswers.prazo;
+  if (quizAnswers.formato) dados['Formato da consulta'] = quizAnswers.formato;
+  if (quizAnswers.investimento) dados['Consulta particular'] = quizAnswers.investimento;
+  if (quizTier) dados['Triagem'] = TIERS[quizTier].whatsapp;
+  if (quizAnswers.objetivo && healthConsent && healthConsent.checked) {
+    dados['O que quer mudar'] = quizAnswers.objetivo;
+  }
+  if (Object.keys(dados).length) window.LeadHub.set(dados);
+}
+
 whatsappQualificado.addEventListener('click', function (e) {
   e.preventDefault();
   if (!confirmCheckbox.checked) {
     callAttentionToCheckbox('whatsapp_bloqueado_sem_confirmar');
+    return;
+  }
+  if (!validateContact(true)) {
+    trackEvent('cta_click', { origem: 'whatsapp_sem_contato' });
     return;
   }
 
@@ -453,15 +524,16 @@ whatsappQualificado.addEventListener('click', function (e) {
   var whatsappWindow = window.open('', '_blank');
   trackEvent('lead_contato', { origem: 'botao_qualificado' });
 
-  var leadNome = (leadNomeInput && leadNomeInput.value.trim()) || '';
-  if (leadNome && window.LeadHub && typeof window.LeadHub.identify === 'function') {
-    window.LeadHub.identify({ name: leadNome });
-  }
+  window.LeadHub?.identify({
+    name: leadNomeInput.value.trim(),
+    phone: leadTelefoneInput.value.trim()
+  });
+  sendQuizToLeadHub();
 
   setTimeout(function () {
     var url = buildWhatsappUrl();
-    // Lead Hub intercepta o clique e injeta o código de rastreio na URL;
-    // se o script não carregar por qualquer motivo, segue com a URL normal.
+    // Lead Hub injeta o código de rastreio "(cód. XXXX)" na mensagem e
+    // registra o contato; se o script não carregar, segue com a URL normal.
     var destino = window.LeadHub ? window.LeadHub.whatsappUrl(url) : url;
     if (whatsappWindow) {
       whatsappWindow.location.href = destino;

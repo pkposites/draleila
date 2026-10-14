@@ -20,7 +20,7 @@
  *
  * Env vars (wrangler secret / vars):
  *   META_ACCESS_TOKEN     -> token de sistema com permissão ads_management (secret)
- *   PIXEL_ID              -> ID do pixel da Dra. Leila (var, obrigatório)
+ *   PIXEL_ID              -> 786053772867277 (var)
  *   TEST_EVENT_CODE       -> opcional, código do Testar eventos
  *   ALLOWED_ORIGIN        -> domínios da LP, separados por vírgula (var)
  *   OFFLINE_EVENTS_TOKEN  -> secret, obrigatório para POST /offline-event
@@ -30,7 +30,7 @@
  *   LEADS  -> KV namespace, guarda ref -> {fbp, fbc, event_source_url, ts}
  */
 
-const DEFAULT_PIXEL_ID = '';
+const DEFAULT_PIXEL_ID = '786053772867277';
 const DEFAULT_GRAPH_VERSION = 'v24.0';
 const REF_TTL_SECONDS = 60 * 60 * 24 * 90; // 90 dias
 
