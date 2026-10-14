@@ -253,21 +253,21 @@ var QUIZ_FIELDS = [
 
 var TIERS = {
   quente: {
-    tag: 'Atendimento prioritário',
-    title: 'Seu próximo passo é a consulta com a Dra. Leila',
-    text: 'Pelas suas respostas, a consulta é o caminho natural agora. Ao falar com a equipe, ela já recebe o seu perfil e prioriza o seu agendamento.',
+    tag: 'Tudo certo',
+    title: 'O próximo passo é marcar a consulta.',
+    text: 'Suas respostas vão junto na mensagem, então a equipe já sabe o que você procura e pode sugerir horários.',
     whatsapp: 'prioridade alta (quer agendar)'
   },
   consideracao: {
-    tag: 'Conhecendo a consulta',
-    title: 'Vale entender bem a consulta antes de decidir',
-    text: 'Na consulta particular de 1 hora, presencial em Pinheiros ou online, a Dra. Leila faz uma análise detalhada da sua face, indica as melhores opções para o seu caso e esclarece todas as suas dúvidas. O valor da consulta é informado pela equipe no WhatsApp.',
+    tag: 'Sobre a consulta',
+    title: 'A equipe passa o valor da consulta pelo WhatsApp.',
+    text: 'É uma consulta de 1 hora com a Dra. Leila, presencial em Pinheiros ou online. Ela examina o seu rosto, explica as opções que fazem sentido no seu caso e responde às suas dúvidas.',
     whatsapp: 'em consideração (quer entender valores/condições)'
   },
   inicial: {
-    tag: 'Conhecendo as possibilidades',
-    title: 'Sem pressa: entenda primeiro como funciona',
-    text: 'Os valores de honorários e de hospital só são informados após a consulta, porque cada planejamento é individual e depende da avaliação da sua face. Enquanto isso, conheça o trabalho da Dra. e fale com a equipe quando quiser.',
+    tag: 'Sobre valores',
+    title: 'O valor da cirurgia só sai depois da consulta.',
+    text: 'Ele depende do planejamento do seu caso e do hospital, e isso só é definido quando a Dra. Leila examina você. Se quiser, a equipe passa o valor da consulta pelo WhatsApp.',
     whatsapp: 'fase inicial (conhecendo, sem prazo definido)',
     links: true
   }
@@ -288,14 +288,24 @@ var quizContinue = document.getElementById('quiz-continue');
 var currentQuizStep = 1;
 var totalQuizSteps = quizSteps.length;
 
-function goToQuizStep(n) {
+var quizCountN = document.getElementById('quiz-count-n');
+var quizCount = document.querySelector('.quiz-count');
+
+function goToQuizStep(n, moveFocus) {
   quizSteps.forEach(function (step) {
     step.hidden = Number(step.dataset.step) !== n;
   });
   quizDots.forEach(function (dot) {
     dot.classList.toggle('active', Number(dot.dataset.dot) <= n);
   });
+  if (quizCountN) quizCountN.textContent = n;
+  if (quizCount) quizCount.hidden = false;
   currentQuizStep = n;
+  // Leva o foco do teclado/leitor de tela para a nova pergunta.
+  if (moveFocus) {
+    var q = document.querySelector('.quiz-step[data-step="' + n + '"] .quiz-question');
+    if (q) q.focus({ preventScroll: true });
+  }
 }
 
 function computeTier() {
@@ -326,15 +336,17 @@ function finishQuiz() {
   if (tier.links) {
     var links = document.createElement('p');
     links.className = 'quiz-result-links';
-    links.innerHTML = '<a href="#consulta">Como é a consulta</a> · '
-      + '<a href="#duvidas">Dúvidas sobre valores</a> · '
+    links.innerHTML = '<a href="#consulta">Como é a consulta</a>'
+      + '<a href="#duvidas">Perguntas frequentes</a>'
       + '<a href="https://www.instagram.com/draleilafreire/" target="_blank" rel="noopener" class="js-social-out">Instagram da Dra.</a>';
     quizResultText.insertAdjacentElement('afterend', links);
     var out = links.querySelector('.js-social-out');
     if (out) out.addEventListener('click', markSocialOut);
   }
 
+  if (quizCount) quizCount.hidden = true;
   quizResult.hidden = false;
+  quizResultTitle.focus({ preventScroll: true });
   // Só o nível da triagem (sem respostas) vai pro dataLayer; nada vai pra Meta.
   trackEvent('quiz_completo', { triagem: quizTier });
 }
@@ -354,7 +366,7 @@ document.querySelectorAll('.quiz-option').forEach(function (btn) {
 
     setTimeout(function () {
       if (currentQuizStep < totalQuizSteps) {
-        goToQuizStep(currentQuizStep + 1);
+        goToQuizStep(currentQuizStep + 1, true);
       } else {
         finishQuiz();
       }
@@ -377,7 +389,7 @@ if (quizRestart) {
       btn.classList.remove('selected');
     });
     quizResult.hidden = true;
-    goToQuizStep(1);
+    goToQuizStep(1, true);
     document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }

@@ -6,7 +6,8 @@ Dra. Letícia Caproni (`pkposites/draleticiacaproni`, ver `PADRAO-LP.md` lá).
 
 ```
 index.html        página
-styles.css        estilos (paleta grafite + rosé, Cormorant Garamond + Jost)
+styles.css        estilos (visual editorial: papel + grafite, terracota nos detalhes,
+                  Libre Caslon Text + Source Sans 3, botão de WhatsApp verde)
 script.js         quiz/triagem, WhatsApp, tracking, CAPI
 privacidade.html  política de privacidade (LGPD)
 assets/           favicon e fotos
@@ -15,11 +16,16 @@ worker/           Cloudflare Worker da API de Conversões (CAPI)
 
 ## Seções (ordem)
 
-1. Header fixo · 2. Hero com foto · 3. Faixa de formação (USP, FAMERP, Santa Casa)
-4. Sobre · 5. Diferenciais · 6. **A consulta** (particular, 1h, presencial ou online)
-7. Como funciona (4 etapas) · 8. Instagram / YouTube · 9. FAQ (valores, convênio,
-hospitais, idade) · 10. **Triagem (quiz)** · 11. Caixinha de confirmação + WhatsApp
-12. Localização (Pinheiros + mapa) · 13. CTA final · Footer com CRM/RQE
+1. Header fixo (com âncoras no desktop) · 2. Hero com foto e CRM/RQE
+3. Sobre + currículo completo (Board, pós-doc, doutorado, fellowship, título, residência, congressos)
+4. **Como é a consulta** (ficha: duração, formato, o que é feito, valor, depois)
+5. Passo a passo + links do Instagram/YouTube · 6. Perguntas frequentes
+7. **Triagem (quiz)** · 8. Caixinha de confirmação + WhatsApp
+9. Endereço (Pinheiros + mapa) · 10. CTA final · Footer com CRM/RQE
+
+Direção visual: evitar cara de template/IA. Nada de rótulos em caixa-alta com
+tracinho, cards com ícone em círculo, gradientes, brilhos ou bordas animadas.
+Texto direto e específico, sem frases de efeito.
 
 ## Triagem (quiz) — `script.js`
 
