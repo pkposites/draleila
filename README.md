@@ -48,9 +48,18 @@ Todos os CTAs da página levam à caixinha; só o botão liberado abre o WhatsAp
 
 ## Pendências antes de ir ao ar
 
-- [ ] **Fotos**: `assets/dra-leila.webp` (hero, retrato 4:5) e
-      `assets/dra-leila-sobre.webp` (seção Sobre). Sem elas aparece o monograma "LF".
-- [ ] `assets/og-image.jpg` (1200×630) para compartilhamento.
+- [ ] **Fotos da Dra.**: `assets/dra-leila.webp` (hero, retrato 4:5) e
+      `assets/dra-leila-sobre.webp` (seção Sobre). Sem elas aparece o desenho do logo.
+
+## Logo e cores
+
+Recortes transparentes gerados a partir de `IMG_6376.JPG.jpeg` (logo enviado):
+`assets/logo-nome.webp` (header), `assets/logo-rosto.webp` (desenho do rosto,
+usado no lugar das fotos), `assets/logo.webp` (completo), favicon, ícone do
+iPhone e `og-image.jpg` (compartilhamento). Os `.cdr` (CorelDraw) não abrem no
+navegador; se houver um SVG ou PNG em alta, dá pra trocar os recortes.
+Cores do logo: marrom `#91755d` e taupe `#b3a79b` (no texto usamos `#7d634d`,
+um tom mais escuro, para dar contraste de leitura).
 - [ ] **Tracking** (`index.html`, objeto `window.TRACKING`): Pixel, Clarity e
       chave do Lead Hub. Vazio = não carrega.
 - [ ] **Avaliações do Google**: seção pronta e comentada no `index.html`;

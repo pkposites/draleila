@@ -5,7 +5,9 @@
   --ink:#1d1f23;
   --ink-soft:#4a4c52;
   --ink-mute:#6b6d73;
-  --accent:#8a4f3b;         /* terracota: links e detalhes, 5,8:1 sobre o papel */
+  --brand:#91755d;          /* marrom do logo */
+  --taupe:#b3a79b;          /* taupe do logo (mãos) */
+  --accent:#7d634d;         /* marrom do logo, um tom mais escuro: 5,3:1 sobre o papel */
   --dark:#1f2226;
   --on-dark:#d9d6d0;
   --whatsapp:#1d7a4c;
@@ -70,7 +72,8 @@ p{margin:0 0 16px;color:var(--ink-soft);}
   border-bottom:1px solid var(--line);
 }
 .header-inner{display:flex;align-items:center;gap:32px;padding:14px 24px;}
-.brand{font-family:var(--serif);font-size:21px;color:var(--ink);text-decoration:none;margin-right:auto;}
+.brand{display:block;margin-right:auto;line-height:0;}
+.brand img{height:45px;width:auto;}
 .header-nav{display:flex;gap:26px;}
 .header-nav a{color:var(--ink-soft);text-decoration:none;font-size:15px;}
 .header-nav a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px;}
@@ -90,15 +93,14 @@ p{margin:0 0 16px;color:var(--ink-soft);}
 .hero-media figcaption{font-size:14px;color:var(--ink-mute);margin-top:10px;}
 
 /* Foto com fallback (monograma) enquanto a imagem real não existir */
-.photo-slot{position:relative;aspect-ratio:4/5;overflow:hidden;background:#d9d2c7;}
+.photo-slot{position:relative;aspect-ratio:4/5;overflow:hidden;background:#ece6df;}
 .photo-slot img{width:100%;height:100%;object-fit:cover;object-position:top center;position:relative;z-index:1;}
-.photo-fallback{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:88px;color:#fff;opacity:.75;
+.photo-slot img.photo-fallback{
+  position:absolute;z-index:0;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  width:62%;height:auto;object-fit:contain;
 }
 .photo-slot--soft{background:var(--paper-2);}
-.photo-slot--soft .photo-fallback{color:#cfc6b8;opacity:1;}
 
 /* Seções */
 .section{padding:88px 0;border-bottom:1px solid var(--line);}
@@ -137,7 +139,7 @@ p{margin:0 0 16px;color:var(--ink-soft);}
 .steps-list li{counter-increment:passo;border-top:1px solid var(--ink);padding-top:16px;}
 .steps-list li::before{
   content:counter(passo) ".";
-  display:block;font-family:var(--serif);font-size:22px;color:var(--accent);margin-bottom:8px;
+  display:block;font-family:var(--serif);font-size:22px;color:var(--brand);margin-bottom:8px;
 }
 .steps-list p{margin:0;font-size:16px;}
 .social-line{margin:48px 0 0;color:var(--ink-soft);}
@@ -180,7 +182,7 @@ p{margin:0 0 16px;color:var(--ink-soft);}
 .quiz-count{font-size:14px;color:var(--ink-mute);margin:0 0 8px;}
 .quiz-progress{display:flex;gap:4px;margin-bottom:26px;}
 .quiz-dot{flex:1;height:3px;background:var(--line);}
-.quiz-dot.active{background:var(--ink);}
+.quiz-dot.active{background:var(--brand);}
 .quiz-question{font-family:var(--serif);font-size:23px;line-height:1.3;margin:0 0 20px;color:var(--ink);}
 .quiz-question:focus{outline:none;}
 .quiz-options{display:grid;gap:10px;}
@@ -294,13 +296,12 @@ p{margin:0 0 16px;color:var(--ink-soft);}
   body{font-size:16px;}
   .container{padding:0 18px;}
   .header-inner{padding:12px 18px;gap:12px;}
-  .brand{font-size:19px;}
+  .brand img{height:38px;}
   .header-cta{padding:9px 14px;font-size:14px;}
 
   .hero-inner{padding:24px 18px 48px;}
   .hero-media{max-width:none;display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:end;}
   .hero-media figcaption{margin:0;}
-  .photo-fallback{font-size:40px;}
   h1{font-size:32px;}
   .hero-lead{font-size:17px;}
   .hero-actions{gap:18px;}
