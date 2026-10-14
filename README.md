@@ -16,7 +16,8 @@ worker/           Cloudflare Worker da API de Conversões (CAPI)
 
 ## Seções (ordem)
 
-1. Header fixo (com âncoras no desktop) · 2. Hero com foto e CRM/RQE
+1. Header fixo (com âncoras no desktop) · 2. Hero com a foto da Dra., nome como
+   título principal e as principais referências (Board, pós-doc, doutorado, USP, congressos)
 3. Sobre + currículo completo (Board, pós-doc, doutorado, fellowship, título, residência, congressos)
 4. **Como é a consulta** (ficha: duração, formato, o que é feito, valor, depois)
 5. Passo a passo + links do Instagram/YouTube · 6. Perguntas frequentes
@@ -86,8 +87,9 @@ enquanto o worker não existir, o envio falha em silêncio.
 
 ## Pendências antes de ir ao ar
 
-- [ ] **Fotos da Dra.**: `assets/dra-leila.webp` (hero, retrato 4:5) e
-      `assets/dra-leila-sobre.webp` (seção Sobre). Sem elas aparece o desenho do logo.
+- [x] Foto do topo: `assets/dra-leila.webp` (também usada no `og-image.jpg`).
+- [ ] Segunda foto (opcional), para a seção Sobre: `assets/dra-leila-sobre.webp`.
+      Sem ela aparece o desenho do logo.
 - [ ] **Clarity** (`window.TRACKING.clarityId` no `index.html`), se for usar.
 - [ ] **Avaliações do Google**: seção pronta e comentada no `index.html`;
       só ativar com nota, quantidade e link reais.
