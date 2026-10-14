@@ -6,8 +6,8 @@ Dra. Letícia Caproni (`pkposites/draleticiacaproni`, ver `PADRAO-LP.md` lá).
 
 ```
 index.html        página
-styles.css        estilos (visual editorial: papel + grafite, terracota nos detalhes,
-                  Libre Caslon Text + Source Sans 3, botão de WhatsApp verde)
+styles.css        estilos (visual de alto padrão: Bodoni Moda + Source Sans 3, tons quentes,
+                  retrato em arco, seção café com champanhe, botão de WhatsApp verde)
 script.js         quiz/triagem, WhatsApp, tracking, CAPI
 privacidade.html  política de privacidade (LGPD)
 assets/           favicon e fotos

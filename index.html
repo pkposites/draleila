@@ -179,7 +179,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -207,7 +207,7 @@
       <a href="#duvidas">Dúvidas</a>
       <a href="#endereco">Endereço</a>
     </nav>
-    <a href="#qualificacao" class="btn btn-dark header-cta">Agendar consulta</a>
+    <a href="#qualificacao" class="btn btn-line header-cta">Agendar consulta</a>
   </div>
 </header>
 
@@ -217,15 +217,16 @@
 <section class="hero" id="topo">
   <div class="container hero-inner">
     <figure class="hero-media">
-      <div class="photo-slot">
+      <div class="photo-slot photo-arch">
         <img src="assets/dra-leila.webp" alt="Dra. Leila Freire, de camisa vermelha, sorrindo" width="618" height="774" fetchpriority="high"
              onerror="this.parentNode.classList.add('is-empty');this.remove();">
         <img class="photo-fallback" src="assets/logo-rosto.webp" alt="" aria-hidden="true">
       </div>
     </figure>
     <div class="hero-copy">
-      <p class="kicker">Rinoplastia e cirurgia da face &middot; Pinheiros, SP</p>
+      <p class="kicker">Rinoplastia &amp; cirurgia da face</p>
       <h1>Dra. Leila Freire</h1>
+      <span class="flourish" aria-hidden="true"><i></i></span>
       <p class="hero-sub">Otorrinolaringologista dedicada à rinoplastia e à cirurgia da face, professora e pesquisadora.</p>
 
       <ul class="hero-refs">
@@ -273,11 +274,12 @@
       </dl>
     </div>
     <div class="about-media">
-      <div class="photo-slot photo-slot--soft">
-        <!-- Segunda foto (consultório/atendimento): assets/dra-leila-sobre.webp -->
+      <div class="photo-slot photo-slot--soft photo-arch">
+        <!-- Segunda foto (consultório/atendimento): assets/dra-leila-sobre.webp.
+             Sem ela, aparece o logo completo como placa da marca. -->
         <img src="assets/dra-leila-sobre.webp" alt="Dra. Leila Freire em atendimento" loading="lazy" width="480" height="600"
              onerror="this.parentNode.classList.add('is-empty');this.remove();">
-        <img class="photo-fallback" src="assets/logo-rosto.webp" alt="" aria-hidden="true">
+        <img class="photo-fallback" src="assets/logo.webp" alt="" aria-hidden="true">
       </div>
     </div>
   </div>
@@ -287,7 +289,8 @@
 <section class="section consult" id="consulta">
   <div class="container consult-grid">
     <div>
-      <h2>Como é a consulta</h2>
+      <p class="kicker">A consulta</p>
+      <h2>Uma hora inteira com a <em>própria</em> Dra. Leila</h2>
       <p>
         Não passamos orçamento de cirurgia por mensagem. Cada nariz pede um
         planejamento diferente, e ele só existe depois que a Dra. Leila
@@ -561,8 +564,10 @@
 <!-- ===================== CTA FINAL ===================== -->
 <section class="final-cta">
   <div class="container final-cta-inner">
-    <h2>Marque sua consulta com a Dra. Leila</h2>
-    <a href="#qualificacao" id="cta-final-scroll" class="btn btn-light btn-lg">Agendar consulta</a>
+    <img class="final-mark" src="assets/logo-rosto-claro.webp" alt="" aria-hidden="true" width="120" height="88">
+    <h2>Marque sua consulta com a <em>Dra. Leila</em></h2>
+    <p>Presencial em Pinheiros ou online &middot; segunda a sexta, das 8h às 18h</p>
+    <a href="#qualificacao" id="cta-final-scroll" class="btn btn-gold btn-lg">Agendar consulta</a>
   </div>
 </section>
 

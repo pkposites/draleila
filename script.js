@@ -654,3 +654,27 @@ if (mapLink) {
     trackEvent('cta_click', { origem: 'google_maps' });
   });
 }
+
+/* ============================================================
+   ENTRADA SUAVE DAS SEÇÕES
+   As seções aparecem com um leve fade ao entrar na tela. A classe só é
+   aplicada aqui, então sem JavaScript (ou sem IntersectionObserver) o
+   conteúdo aparece normalmente.
+============================================================= */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var alvos = document.querySelectorAll('main .section > .container, .final-cta-inner');
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  alvos.forEach(function (el) {
+    el.classList.add('reveal');
+    obs.observe(el);
+  });
+})();
