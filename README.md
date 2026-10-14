@@ -77,8 +77,8 @@ enquanto o worker não existir, o envio falha em silêncio.
    `META_ACCESS_TOKEN` (Gerenciador de Eventos > pixel > Configurações >
    API de Conversões > Gerar token de acesso) e `OFFLINE_EVENTS_TOKEN`
    (senha à sua escolha). `PIXEL_ID` e `ALLOWED_ORIGIN` já vêm do `wrangler.toml`.
-3. Ajustar `ALLOWED_ORIGIN` no `wrangler.toml` quando o domínio final da LP
-   estiver definido (aceita vários, separados por vírgula).
+3. Ajustar `ALLOWED_ORIGIN` no `wrangler.toml` (hoje: draleilalp.netlify.app) se o domínio da LP
+   mudar (aceita vários, separados por vírgula).
 4. Opcional: KV `draleila-leads` para os eventos offline (ver comentário no
    `wrangler.toml`).
 5. Teste: Gerenciador de Eventos > Testar eventos; colocar o código em

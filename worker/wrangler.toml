@@ -6,7 +6,7 @@ compatibility_date = "2026-01-01"
 PIXEL_ID = "786053772867277"
 # Domínios da LP que podem chamar o worker, separados por vírgula.
 # Trocar/adicionar quando o domínio final da LP estiver definido.
-ALLOWED_ORIGIN = "https://draleila.netlify.app"
+ALLOWED_ORIGIN = "https://draleilalp.netlify.app,https://claude-dreamy-allen-gwoych--draleilalp.netlify.app"
 
 # Segredos (não vão no git — configurar no dashboard ou via `wrangler secret put`):
 #   META_ACCESS_TOKEN     -> token de acesso da API de Conversões do pixel
