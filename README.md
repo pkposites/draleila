@@ -88,6 +88,7 @@ enquanto o worker não existir, o envio falha em silêncio.
 ## Pendências antes de ir ao ar
 
 - [x] Foto do topo: `assets/dra-leila.webp` (recorte 4:5 de `IMG_5950.JPG`, também no `og-image.jpg`).
+- [x] Foto da seção Sobre: `assets/dra-leila-sobre.webp` (recorte 4:5 de `IMG_6393.JPG.jpeg`).
 - [ ] **Clarity** (`window.TRACKING.clarityId` no `index.html`), se for usar.
 - [ ] **Avaliações do Google**: seção pronta e comentada no `index.html`;
       só ativar com nota, quantidade e link reais.

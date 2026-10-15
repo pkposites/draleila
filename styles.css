@@ -130,9 +130,15 @@ p{margin:0 0 16px;color:var(--ink-soft);}
 .section-sub{max-width:560px;}
 
 /* Sobre + currículo */
-.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start;}
+.about-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:72px;align-items:start;}
+.about-media{margin:0;position:sticky;top:110px;padding:0 0 16px 16px;}
+.about-media::before{
+  content:"";position:absolute;left:0;top:16px;right:16px;bottom:0;
+  border:1px solid var(--brand);opacity:.55;border-radius:999px 999px 0 0;
+}
+.about-media .photo-slot{position:relative;z-index:1;box-shadow:0 30px 60px -38px rgba(35,29,26,.55);}
 .about-text > p{max-width:620px;}
-.cv{margin:0;border-top:1px solid var(--ink);}
+.cv{margin:36px 0 0;border-top:1px solid var(--ink);}
 .cv > div{
   display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;
   padding:14px 0;border-bottom:1px solid var(--line);
@@ -330,6 +336,7 @@ p{margin:0 0 16px;color:var(--ink-soft);}
   .hero-inner{grid-template-columns:1fr;gap:36px;padding-top:40px;}
   .hero-media{width:min(380px,78%);margin:0 auto;}
   .about-grid,.consult-grid,.faq-grid,.location-grid{grid-template-columns:1fr;gap:32px;}
+  .about-media{position:relative;top:auto;order:-1;width:min(340px,72%);margin:0 auto;}
   .steps-list{grid-template-columns:1fr 1fr;}
   .proof-grid{grid-template-columns:1fr;}
 }
