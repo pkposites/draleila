@@ -264,7 +264,7 @@ var TIERS = {
   consideracao: {
     tag: 'Sobre a consulta',
     title: 'A equipe passa o valor da consulta pelo WhatsApp.',
-    text: 'É uma consulta de 1 hora com a Dra. Leila, presencial em Pinheiros ou online. Ela examina o seu rosto, explica as opções que fazem sentido no seu caso e responde às suas dúvidas.',
+    text: 'É uma consulta de 1 hora com a Dra. Leila, presencial em Pinheiros ou on-line. Ela examina o seu rosto, explica as opções que fazem sentido no seu caso e responde às suas dúvidas.',
     whatsapp: 'em consideração (quer entender valores/condições)'
   },
   inicial: {
