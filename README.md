@@ -99,7 +99,7 @@ enquanto o worker não existir, o envio falha em silêncio.
 ## Logo e cores
 
 Recortes transparentes gerados a partir de `IMG_6376.JPG.jpeg` (logo enviado):
-`assets/logo-nome.webp` (header), `assets/logo-rosto.webp` (desenho do rosto,
+`assets/logo-horizontal.webp` (header: rosto + nome lado a lado), `assets/logo-nome.webp` (só o nome), `assets/logo-rosto.webp` (desenho do rosto,
 usado no lugar das fotos), `assets/logo.webp` (completo), favicon, ícone do
 iPhone e `og-image.jpg` (compartilhamento). Os `.cdr` (CorelDraw) não abrem no
 navegador; se houver um SVG ou PNG em alta, dá pra trocar os recortes.
