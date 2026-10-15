@@ -362,7 +362,7 @@ p{margin:0 0 16px;color:var(--ink-soft);}
 
   .section{padding:56px 0;}
   .cv > div,.facts > div{grid-template-columns:1fr;gap:2px;}
-  .about-media{display:none;}
+  .about-media{width:68%;margin:0 auto;}
   .steps-list{grid-template-columns:1fr;gap:20px;}
   .faq-hospitals{columns:1;}
 
