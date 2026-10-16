@@ -157,6 +157,10 @@ p{margin:0 0 16px;color:var(--ink-soft);}
 .consult .facts > div{border-bottom-color:rgba(201,171,138,.22);}
 .consult .facts dt{color:var(--gold);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:13px;padding-top:3px;}
 .consult .facts dd{color:#f3ece3;}
+.facts dd p{margin:0 0 10px;font-size:15.5px;line-height:1.6;}
+.facts dd p:last-child{margin-bottom:0;}
+.consult .facts dd p{color:var(--on-dark);}
+.consult .facts dd .facts-lead{font-family:var(--serif);font-size:20px;line-height:1.35;color:#fbf6ef;margin-bottom:12px;}
 .consult-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start;}
 .facts{margin:0;border-top:1px solid var(--ink);}
 .facts > div{
