@@ -118,7 +118,7 @@ um tom mais escuro, para dar contraste de leitura).
 
 ## Atenção: categoria sensível na Meta
 
-O texto cita rinoplastia, cirurgia e hospitais (pedido da cliente, no FAQ).
+O texto cita Rinoplastia, cirurgia e hospitais (pedido da cliente, no FAQ).
 O domínio provavelmente será classificado como saúde; por isso nada do quiz
 ou texto livre vai para a Meta, só o evento `Lead` com `value`/`currency`.
 Como a URL não é mais limpa (exigência do Lead Hub), o pixel passa a ver os
