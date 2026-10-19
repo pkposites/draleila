@@ -36,6 +36,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.15;margin:0 0 18
 h1{font-size:clamp(34px,4.6vw,54px);letter-spacing:-.5px;}
 h2{font-size:clamp(28px,3.2vw,40px);letter-spacing:-.3px;}
 h1 em,h2 em{font-style:italic;color:var(--accent);}
+.h2-sep{color:var(--brand);opacity:.7;margin:0 .15em;font-weight:300;}
 h3{font-family:var(--sans);font-size:17px;font-weight:600;margin-bottom:6px;}
 p{margin:0 0 16px;color:var(--ink-soft);}
 
@@ -146,6 +147,7 @@ p{margin:0 0 16px;color:var(--ink-soft);}
 .cv dt{font-weight:600;color:var(--ink);}
 .cv dd{margin:0;color:var(--ink-soft);}
 .cv dt:only-child{grid-column:1 / -1;}
+.cv-note{display:block;margin-top:6px;font-size:14.5px;line-height:1.5;color:var(--ink-mute);}
 
 /* Consulta */
 .consult{background:var(--dark);border-bottom:0;}
