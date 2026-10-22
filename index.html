@@ -85,15 +85,16 @@
   })();
 </script>
 
-<!-- Meta Pixel — só carrega depois do consentimento (ver bloco LGPD)
-  - consent 'revoke' antes do init: o pixel fica bloqueado até o aceite
-    (o Lead Hub e o banner liberam com 'grant').
+<!-- Meta Pixel — carrega e dispara o PageView assim que a página abre
+  (decisão do cliente). Quem clica em "Recusar" no aviso de cookies tem o
+  pixel bloqueado dali em diante (fbq consent 'revoke'), inclusive o Lead;
+  quem já tinha recusado antes tem o pixel carregado já bloqueado.
   - autoConfig desligado: o pixel não coleta sozinho textos de botões nem
     metadados da página (título/descrição), que podem conter dados sensíveis.
   - external_id (ID do visitante) vai no init; o pixel aplica o hash.
 ============================================================= -->
 <script>
-  function loadMetaPixel() {
+  function loadMetaPixel(revoked) {
     var pixelId = window.TRACKING.metaPixelId;
     if (!pixelId) return;
     !function(f,b,e,v,n,t,s)
@@ -105,7 +106,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('set', 'autoConfig', false, pixelId);
-    fbq('consent', 'revoke');
+    if (revoked) fbq('consent', 'revoke');
     fbq('init', pixelId, window.leadRef ? { external_id: window.leadRef } : {});
     fbq('track', 'PageView');
   }
@@ -118,8 +119,9 @@
 
 <!-- ============================================================
   CONSENTIMENTO DE COOKIES (LGPD)
-  Pixel e Clarity só são carregados depois que a pessoa clica em "Aceitar"
-  no banner. A decisão também é repassada ao Lead Hub
+  O Meta Pixel carrega desde o início (ver acima); em "Recusar" ele é
+  bloqueado. O Clarity só carrega depois do "Aceitar". A decisão também é
+  repassada ao Lead Hub
   (LeadHub.consent(true/false)), que só guarda dados no aparelho com o
   aceite. Em "Recusar", a LP segue funcionando normalmente e o Lead Hub
   registra o contato sem cookies.
@@ -141,9 +143,15 @@
       if (tag) tag.addEventListener('load', function () { window.LeadHub?.consent(granted); });
     }
 
+    // Pixel desde o início; já bloqueado para quem recusou antes.
+    try { loadMetaPixel(consent === 'rejected'); } catch (e) {}
+
+    function revokePixel() {
+      try { if (typeof fbq === 'function') fbq('consent', 'revoke'); } catch (e) {}
+    }
+
     function activateTracking() {
       try { loadClarity(); } catch (e) {}
-      try { loadMetaPixel(); } catch (e) {}
       leadHubConsent(true); // o Lead Hub também libera o pixel ('grant')
       // Garante a liberação do pixel mesmo se o Lead Hub não carregar.
       try { if (typeof fbq === 'function') fbq('consent', 'grant'); } catch (e) {}
@@ -171,6 +179,7 @@
       document.getElementById('lgpd-reject').addEventListener('click', function () {
         try { localStorage.setItem(KEY, 'rejected'); } catch (e) {}
         banner.hidden = true;
+        revokePixel();
         leadHubConsent(false);
       });
     });

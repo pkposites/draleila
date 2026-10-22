@@ -54,7 +54,7 @@ Todos os CTAs da página levam à caixinha; só o botão liberado abre o WhatsAp
   fica logo depois do pixel; no `privacidade.html` (sem pixel) no início do `<head>`.
 - O banner chama `LeadHub.consent(true)` ao aceitar e `LeadHub.consent(false)` ao
   recusar (inclusive em visitas seguintes, lendo `localStorage.lgpd_consent`).
-- Pixel com `fbq('consent', 'revoke')` antes do `init`; liberado no aceite.
+- Pixel carrega e dispara o PageView ao abrir a página (decisão do cliente); em "Recusar" é bloqueado com `fbq('consent', 'revoke')`, e quem já recusou antes recebe o pixel já bloqueado.
 - Único botão que abre o WhatsApp: `#whatsapp-qualificado`. Antes dele, nome e
   WhatsApp (máscara `(11) 91234-5678`) são obrigatórios. Ao confirmar:
   `LeadHub.identify({ name, phone })`, `LeadHub.set({...})` com as respostas do
