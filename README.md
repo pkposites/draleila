@@ -67,12 +67,12 @@ Todos os CTAs da página levam à caixinha; só o botão liberado abre o WhatsAp
 ## API de Conversões (Cloudflare Worker)
 
 Pasta `worker/`, pixel `786053772867277`. A LP já aponta para
-`https://draleilacapi.robson-oc96.workers.dev` (`CAPI_ENDPOINT` no `script.js`);
+`https://draleila.robson-oc96.workers.dev` (`CAPI_ENDPOINT` no `script.js`);
 enquanto o worker não existir, o envio falha em silêncio.
 
 1. Cloudflare > Workers e Pages > Create > Import a repository >
    `pkposites/draleila`, branch `claude/dreamy-allen-gwoych`, **Root directory** `worker`,
-   nome **draleilacapi** (o nome define a URL).
+   nome **draleila** (o nome define a URL).
 2. Em Settings > Variables and Secrets, adicionar os secrets
    `META_ACCESS_TOKEN` (Gerenciador de Eventos > pixel > Configurações >
    API de Conversões > Gerar token de acesso) e `OFFLINE_EVENTS_TOKEN`

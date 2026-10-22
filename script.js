@@ -90,12 +90,11 @@ captureOrigemParams();
    Espelha o lead_contato (Lead) no servidor, com o mesmo
    event_id do fbq() do navegador (dedupe automático no Ads Manager).
    Preencher CAPI_ENDPOINT com a URL do worker depois do deploy
-   (ex: https://draleilacapi.<subdomínio>.workers.dev). Vazio = desligado.
+   (ex: https://draleila.<subdomínio>.workers.dev). Vazio = desligado.
 ============================================================= */
-// Worker "draleilacapi" na conta Cloudflare (mesmo subdomínio do worker da
-// Dra. Letícia). Enquanto ele não estiver publicado, o envio falha em
-// silêncio e a página segue normal.
-var CAPI_ENDPOINT = 'https://draleilacapi.robson-oc96.workers.dev';
+// Worker "draleila" na conta Cloudflare (pasta worker/ deste repositório).
+// Se ele estiver fora do ar, o envio falha em silêncio e a página segue normal.
+var CAPI_ENDPOINT = 'https://draleila.robson-oc96.workers.dev';
 var LEAD_REF_KEY = 'lead_ref';
 // Valor fixo do lead (a Meta exige número + moeda; sem valor real, usa 1 BRL).
 var LEAD_VALUE = 1;
