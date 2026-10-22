@@ -1,4 +1,4 @@
-name = "draleilacapi"
+name = "draleila"
 main = "index.js"
 compatibility_date = "2026-01-01"
 
@@ -15,9 +15,8 @@ ALLOWED_ORIGIN = "https://draleilalp.netlify.app,https://claude-dreamy-allen-gwo
 # Opcional:
 #   TEST_EVENT_CODE       -> código do "Testar eventos" no Gerenciador de Eventos
 
-# KV (opcional, só para os eventos offline casarem com o clique original).
-# 1. Criar o namespace: Workers e Pages > KV > Create namespace "draleila-leads"
-# 2. Colar o ID abaixo e descomentar as 3 linhas.
-# [[kv_namespaces]]
-# binding = "LEADS"
-# id = "COLE_AQUI_O_ID_DO_KV"
+# KV usado pelos eventos offline (casa o evento com o clique original).
+# Namespace "draleila-leads", criado na conta Cloudflare.
+[[kv_namespaces]]
+binding = "LEADS"
+id = "47404a90cf0842e986cd131635dff1f7"
