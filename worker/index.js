@@ -31,6 +31,9 @@
  */
 
 const DEFAULT_PIXEL_ID = '786053772867277';
+// Domínios da LP autorizados a chamar o worker (usado quando ALLOWED_ORIGIN
+// não estiver configurado no painel da Cloudflare).
+const DEFAULT_ALLOWED_ORIGIN = 'https://draleilalp.netlify.app,https://claude-dreamy-allen-gwoych--draleilalp.netlify.app';
 const DEFAULT_GRAPH_VERSION = 'v24.0';
 const REF_TTL_SECONDS = 60 * 60 * 24 * 90; // 90 dias
 
@@ -50,7 +53,7 @@ const OFFLINE_EVENT_MAP = {
 };
 
 function allowedOrigins(env) {
-  return String(env.ALLOWED_ORIGIN || '')
+  return String(env.ALLOWED_ORIGIN || DEFAULT_ALLOWED_ORIGIN)
     .split(',')
     .map((o) => o.trim().replace(/\/$/, ''))
     .filter(Boolean);
